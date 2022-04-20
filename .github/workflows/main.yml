@@ -74,6 +74,29 @@ jobs:
           retention-days: 1
           if-no-files-found: error
 
+  run-cwl-auto-conda:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout-repository
+        uses: actions/checkout@v2
+
+      - name: install-basic-deps
+        uses: ./.github/actions/install-basic-deps
+
+      - name: run-workflow
+        shell: bash -l {0}
+        run: |
+          cd $GITHUB_WORKSPACE/simple_use_case/cwl
+          cwltool --beta-conda-dependencies wf_run_use_case.cwl
+
+      - name: upload-paper-artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: paper
+          path: ./simple_use_case/cwl/paper.pdf
+          retention-days: 1
+          if-no-files-found: error
 
   run-nextflow:
     runs-on: ubuntu-latest

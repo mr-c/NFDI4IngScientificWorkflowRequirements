@@ -87,7 +87,8 @@ jobs:
       - name: run-workflow
         shell: bash -l {0}
         run: |
-          sudo apt-get update && sudo apt-get install --no-install-recommends --yes cwltool
+          sudo apt-get update && sudo apt-get install --no-install-recommends --yes python3-pip
+          sudo python3 -m pip install cwltool[deps]
           cd $GITHUB_WORKSPACE/simple_use_case/cwl
           cwltool --beta-conda-dependencies wf_run_use_case.cwl
 

@@ -88,6 +88,8 @@ jobs:
           sudo apt-get update && sudo apt-get install --no-install-recommends --yes python3.7-dev python3-pip python3-setuptools
           python3.7 -m pip install cwltool[deps]
           cd $GITHUB_WORKSPACE/simple_use_case/cwl
+          echo $PYTHONPATH
+          set
           python3.7 -m cwltool --debug --beta-conda-dependencies wf_run_use_case.cwl
 
       - name: upload-paper-artifact

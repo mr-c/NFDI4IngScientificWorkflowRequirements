@@ -92,7 +92,7 @@ jobs:
           bash Miniconda3-latest-Linux-x86_64.sh -b -p conda
           conda/bin/conda init
           source ~/.bashrc
-          sudo python3 -m pip install cwltool[deps]
+          sudo python3 -m pip install conda cwltool[deps]
           cd $GITHUB_WORKSPACE/simple_use_case/cwl
           cwltool --beta-conda-dependencies wf_run_use_case.cwl
 
